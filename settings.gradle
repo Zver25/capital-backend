@@ -13,3 +13,6 @@ pluginManagement {
 }
 
 rootProject.name = 'capital-backend'
+
+include('registry')
+include('gateway')
