@@ -16,3 +16,4 @@ rootProject.name = 'capital-backend'
 
 include('registry')
 include('gateway')
+include('auth-service')
