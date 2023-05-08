@@ -12,7 +12,7 @@ public class RouterConfiguration {
 	public RouteLocator routes(RouteLocatorBuilder builder) {
 		return builder.routes()
 			.route(predicateSpec -> predicateSpec
-				.path("/auth/**")
+				.path("/api/auth/**")
 				.uri("lb://auth-service")
 			)
 			.build();
