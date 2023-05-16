@@ -15,6 +15,14 @@ public class RouterConfiguration {
 				.path("/api/auth/**")
 				.uri("lb://auth-service")
 			)
+			.route(predicateSpec -> predicateSpec
+				.path("/api/currency/**")
+				.uri("lb://currency-service")
+			)
+			.route(predicateSpec -> predicateSpec
+				.path("/api/currency/**")
+				.uri("lb://currency-service")
+			)
 			.build();
 	}
 
