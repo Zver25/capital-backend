@@ -4,7 +4,7 @@ import lombok.Data;
 import space.sviridovskiy.capital.auth.domain.User;
 
 @Data
-public class AuthRequest {
+public class AuthenticationRequest {
 	private String username;
 	private String password;
 

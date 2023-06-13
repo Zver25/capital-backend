@@ -1,4 +1,4 @@
-package space.sviridovskiy.capital.expense.domain;
+package space.sviridovskiy.capital.income.domain;
 
 import lombok.Data;
 
@@ -8,9 +8,9 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "expenses")
+@Table(name = "incomes")
 @Data
-public class Expense {
+public class Income {
   @Id
   @Column(name = "id")
   private UUID id;
@@ -31,7 +31,7 @@ public class Expense {
   @Column(name = "date")
   private LocalDate date;
 
-  public void update(Expense expense) {
+  public void update(Income expense) {
     category = expense.getCategory();
     amount = expense.getAmount();
     currencyCode = expense.getCurrencyCode();

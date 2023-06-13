@@ -9,8 +9,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 import space.sviridovskiy.capital.auth.command.JwtCheckCommand;
 import space.sviridovskiy.capital.auth.config.jwt.JwtProvider;
-import space.sviridovskiy.capital.auth.controller.payload.AuthRequest;
-import space.sviridovskiy.capital.auth.controller.payload.AuthResponse;
+import space.sviridovskiy.capital.auth.controller.payload.AuthenticationRequest;
+import space.sviridovskiy.capital.auth.controller.payload.AuthenticationResponse;
+import space.sviridovskiy.capital.auth.controller.payload.RefreshTokenRequest;
 import space.sviridovskiy.capital.auth.domain.User;
 import space.sviridovskiy.capital.auth.domain.UserPayload;
 import space.sviridovskiy.capital.auth.service.UserService;
@@ -29,23 +30,54 @@ public class AuthController {
 	private final JwtCheckCommand jwtCheckCommand;
 
 	@PostMapping("/register")
-	public ResponseEntity<AuthResponse> register(@RequestBody AuthRequest request) {
+	public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthenticationRequest request) {
 		log.info("Register user: {}", request.getUsername());
 		userService.create(request.toUser());
 		String token = jwtProvider.generateToken(request.getUsername());
+		String refreshToken = jwtProvider.generateRefreshToken(request.getUsername());
 
-		return ResponseEntity.ok(new AuthResponse(request.getUsername(), token));
+		return ResponseEntity.ok(
+			AuthenticationResponse.builder()
+				.username(request.getUsername())
+				.accessToken(token)
+				.refreshToken(refreshToken)
+				.build()
+		);
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+	public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request) {
 		log.info("Login user: {}", request.getUsername());
 		Optional<User> optionalUser = userService.findByUsernameAndPassword(request.getUsername(), request.getPassword());
 
 		return optionalUser
 			.map(User::getUsername)
-			.map(username -> ResponseEntity.ok(new AuthResponse(username, jwtProvider.generateToken(username))))
+			.map(username -> ResponseEntity.ok(
+				AuthenticationResponse.builder()
+					.username(username)
+					.accessToken(jwtProvider.generateToken(username))
+					.refreshToken(jwtProvider.generateRefreshToken(username))
+					.build()
+			))
 			.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+	}
+
+	@PostMapping("/refresh-token")
+	public ResponseEntity<AuthenticationResponse> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
+		String refreshedToken = jwtProvider.refreshToken(refreshTokenRequest.getRefreshToken());
+		String username = jwtProvider.getUsernameFromToken(refreshedToken);
+
+		if (refreshedToken != null) {
+			return ResponseEntity.ok(
+				AuthenticationResponse.builder()
+					.username(username)
+					.accessToken(refreshedToken)
+					.refreshToken(refreshTokenRequest.getRefreshToken())
+					.build()
+			);
+		} else {
+			throw new RuntimeException("Invalid refresh token");
+		}
 	}
 
 	@GetMapping("/check-token/{token}")

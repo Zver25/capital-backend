@@ -11,6 +11,7 @@ import space.sviridovskiy.capital.expense.domain.Currency;
 import space.sviridovskiy.capital.expense.service.CurrencyService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -24,11 +25,15 @@ public class CurrencyController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Currency>> getAll(UsernamePasswordAuthenticationToken authenticationToken) {
+  public ResponseEntity<List<String>> getAll(UsernamePasswordAuthenticationToken authenticationToken) {
     return ResponseEntity.ok(
-      currencyService.getAllForUser(
-        getUsername(authenticationToken)
-      )
+      currencyService
+        .getAllForUser(
+          getUsername(authenticationToken)
+        )
+        .stream()
+        .map(Currency::getCode)
+        .collect(Collectors.toList())
     );
   }
 }

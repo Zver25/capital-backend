@@ -10,6 +10,7 @@ import space.sviridovskiy.capital.expense.service.ExpenseService;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -23,7 +24,7 @@ public class ExpenseServiceImpl implements ExpenseService {
   }
 
   @Override
-  public Expense findById(String username, long id) throws ExpenseNotFoundException {
+  public Expense findById(String username, UUID id) throws ExpenseNotFoundException {
     return expenseRepository
       .findById(id)
       .filter((e -> e.getUsername().equals(username)))
@@ -32,6 +33,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
   @Override
   public Expense create(String username, Expense expense) {
+    expense.setId(UUID.randomUUID());
     expense.setUsername(username);
 
     return expenseRepository.save(expense);
@@ -50,7 +52,7 @@ public class ExpenseServiceImpl implements ExpenseService {
   }
 
   @Override
-  public void delete(String username, long id) throws ExpenseNotFoundException {
+  public void delete(String username, UUID id) throws ExpenseNotFoundException {
     Expense expense = expenseRepository
       .findById(id)
       .filter(e -> e.getUsername().equals(username))

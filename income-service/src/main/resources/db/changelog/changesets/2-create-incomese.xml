@@ -10,7 +10,7 @@
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
     <changeSet author="AleksandrSviridovsky" id="Create expenses table">
-        <createTable tableName="expenses">
+        <createTable tableName="incomes">
             <column name="id" type="uuid">
                 <constraints primaryKey="true"/>
             </column>

@@ -1,7 +1,7 @@
-package space.sviridovskiy.capital.expense.repository;
+package space.sviridovskiy.capital.income.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import space.sviridovskiy.capital.expense.domain.Category;
+import space.sviridovskiy.capital.income.domain.Category;
 
 import java.util.List;
 import java.util.UUID;

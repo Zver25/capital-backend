@@ -24,12 +24,20 @@ public class RouterConfiguration {
 				.uri("lb://currency-service")
 			)
 			.route(predicateSpec -> predicateSpec
-				.path("/api/expense-category/**")
+				.path("/api/expense-categories/**")
 				.uri("lb://expense-service")
 			)
 			.route(predicateSpec -> predicateSpec
-				.path("/api/expense/**")
+				.path("/api/expenses/**")
 				.uri("lb://expense-service")
+			)
+			.route(predicateSpec -> predicateSpec
+				.path("/api/income-categories/**")
+				.uri("lb://income-service")
+			)
+			.route(predicateSpec -> predicateSpec
+				.path("/api/incomes/**")
+				.uri("lb://income-service")
 			)
 			.build();
 	}

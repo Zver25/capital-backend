@@ -1,4 +1,4 @@
-package space.sviridovskiy.capital.expense.controller;
+package space.sviridovskiy.capital.income.controller;
 
 
 import lombok.AllArgsConstructor;
@@ -6,9 +6,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-import space.sviridovskiy.capital.expense.domain.Expense;
-import space.sviridovskiy.capital.expense.exeption.ExpenseNotFoundException;
-import space.sviridovskiy.capital.expense.service.ExpenseService;
+import space.sviridovskiy.capital.income.domain.Income;
+import space.sviridovskiy.capital.income.exeption.IncomeNotFoundException;
+import space.sviridovskiy.capital.income.service.IncomeService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,19 +17,19 @@ import java.util.UUID;
 @RestController
 @AllArgsConstructor
 @Log4j2
-@RequestMapping("/api/expenses")
-public class ExpenseController {
-  private final ExpenseService expenseService;
+@RequestMapping("/api/incomes")
+public class IncomeController {
+  private final IncomeService expenseService;
 
   private String getUsername(UsernamePasswordAuthenticationToken authenticationToken) {
     return authenticationToken.getPrincipal().toString();
   }
 
   @GetMapping("{id}")
-  public ResponseEntity<Expense> getById(
+  public ResponseEntity<Income> getById(
     @PathVariable UUID id,
     UsernamePasswordAuthenticationToken authenticationToken
-  ) throws ExpenseNotFoundException {
+  ) throws IncomeNotFoundException {
     return ResponseEntity.ok(
       expenseService.findById(
         getUsername(authenticationToken),
@@ -39,7 +39,7 @@ public class ExpenseController {
   }
 
   @GetMapping("{start}/{end}")
-  public ResponseEntity<List<Expense>> getByPeriod(
+  public ResponseEntity<List<Income>> getByPeriod(
     @PathVariable String start,
     @PathVariable String end,
     UsernamePasswordAuthenticationToken authenticationToken
@@ -57,9 +57,9 @@ public class ExpenseController {
   }
 
   @PostMapping
-  public ResponseEntity<Expense> create(
+  public ResponseEntity<Income> create(
     UsernamePasswordAuthenticationToken authenticationToken,
-    @RequestBody Expense bodyExpense
+    @RequestBody Income bodyExpense
   ) {
     return ResponseEntity.ok(
       expenseService.create(
@@ -70,11 +70,11 @@ public class ExpenseController {
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Expense> update(
+  public ResponseEntity<Income> update(
     @PathVariable UUID id,
-    @RequestBody Expense bodyExpense,
+    @RequestBody Income bodyExpense,
     UsernamePasswordAuthenticationToken authenticationToken
-  ) throws ExpenseNotFoundException {
+  ) throws IncomeNotFoundException {
     bodyExpense.setId(id);
 
     return ResponseEntity.ok(
@@ -89,7 +89,7 @@ public class ExpenseController {
   public ResponseEntity<?> delete(
     @PathVariable UUID id,
     UsernamePasswordAuthenticationToken authenticationToken
-  ) throws ExpenseNotFoundException {
+  ) throws IncomeNotFoundException {
     expenseService.delete(
       getUsername(authenticationToken),
       id

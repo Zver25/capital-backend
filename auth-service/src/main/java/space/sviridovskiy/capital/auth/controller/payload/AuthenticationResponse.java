@@ -1,11 +1,14 @@
 package space.sviridovskiy.capital.auth.controller.payload;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AuthResponse {
+@Builder
+public class AuthenticationResponse {
 	private String username;
-	private String token;
+	private String accessToken;
+	private String refreshToken;
 }

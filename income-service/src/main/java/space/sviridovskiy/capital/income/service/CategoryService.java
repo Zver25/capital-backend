@@ -1,7 +1,7 @@
-package space.sviridovskiy.capital.expense.service;
+package space.sviridovskiy.capital.income.service;
 
-import space.sviridovskiy.capital.expense.domain.Category;
-import space.sviridovskiy.capital.expense.exeption.CategoryNotFoundException;
+import space.sviridovskiy.capital.income.domain.Category;
+import space.sviridovskiy.capital.income.exeption.CategoryNotFoundException;
 
 import java.util.List;
 import java.util.UUID;

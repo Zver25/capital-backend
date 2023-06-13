@@ -1,12 +1,12 @@
-package space.sviridovskiy.capital.expense.service.impl;
+package space.sviridovskiy.capital.income.service.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import space.sviridovskiy.capital.expense.domain.Category;
-import space.sviridovskiy.capital.expense.exeption.CategoryNotFoundException;
-import space.sviridovskiy.capital.expense.repository.CategoryRepository;
-import space.sviridovskiy.capital.expense.service.CategoryService;
+import space.sviridovskiy.capital.income.domain.Category;
+import space.sviridovskiy.capital.income.exeption.CategoryNotFoundException;
+import space.sviridovskiy.capital.income.repository.CategoryRepository;
+import space.sviridovskiy.capital.income.service.CategoryService;
 
 import java.util.List;
 import java.util.UUID;

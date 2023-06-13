@@ -3,25 +3,82 @@ package space.sviridovskiy.capital.auth.config.jwt;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Component
 @Slf4j
 public class JwtProvider {
-	@Value("$(jwt.secret)")
-	private String jwtSecret;
+	private final String jwtSecret;
+
+	private final long accessTokenExpiration;
+
+	private final long refreshTokenExpiration;
+
+	JwtProvider(
+		@Value("${jwt.secret}") String jwtSecret,
+		@Value("${jwt.access_expiration}") long accessTokenExpiration,
+		@Value("${jwt.refresh_expiration}") long refreshTokenExpiration
+	) {
+		this.jwtSecret = jwtSecret;
+		this.accessTokenExpiration = accessTokenExpiration;
+		this.refreshTokenExpiration = refreshTokenExpiration;
+	}
 
 	public String generateToken(String username) {
-		Date date = Date.from(LocalDate.now().plusDays(15).atStartOfDay(ZoneId.systemDefault()).toInstant());
 		return Jwts.builder()
 			.setSubject(username)
-			.setExpiration(date)
+			.setIssuedAt(new Date())
+			.setExpiration(new Date(System.currentTimeMillis() + accessTokenExpiration))
 			.signWith(SignatureAlgorithm.HS512, jwtSecret)
 			.compact();
+	}
+
+	public String generateRefreshToken(String username) {
+		return Jwts.builder()
+			.setSubject(username)
+			.setIssuedAt(new Date())
+			.setExpiration(new Date(System.currentTimeMillis() + refreshTokenExpiration))
+			.signWith(SignatureAlgorithm.HS512, jwtSecret)
+			.compact();
+	}
+
+	public String refreshToken(String refreshToken) {
+		try {
+			String username = Jwts.parser()
+				.setSigningKey(jwtSecret)
+				.parseClaimsJws(refreshToken)
+				.getBody()
+				.getSubject();
+
+			return generateToken(username);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public String getUsernameFromToken(String token) {
+		return Jwts.parser()
+			.setSigningKey(jwtSecret)
+			.parseClaimsJws(token)
+			.getBody()
+			.getSubject();
+	}
+
+	public boolean validateToken(String token, UserDetails userDetails) {
+		final String username = getUsernameFromToken(token);
+
+		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+	}
+
+	public boolean isTokenExpired(String token) {
+		final Date expiration = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getExpiration();
+
+		return expiration.before(new Date());
 	}
 
 	public boolean validateToken(String token) {
@@ -40,11 +97,5 @@ public class JwtProvider {
 			log.debug("invalid token");
 		}
 		return false;
-	}
-
-	public String getUsernameFromToken(String token) {
-		Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
-
-		return claims.getSubject();
 	}
 }
