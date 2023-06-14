@@ -6,7 +6,10 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
+import space.sviridovskiy.capital.expense.payload.CreateExpenseRequest;
+import space.sviridovskiy.capital.expense.payload.UpdateExpenseRequest;
 import space.sviridovskiy.capital.expense.domain.Expense;
+import space.sviridovskiy.capital.expense.exeption.CategoryNotFoundException;
 import space.sviridovskiy.capital.expense.exeption.ExpenseNotFoundException;
 import space.sviridovskiy.capital.expense.service.ExpenseService;
 
@@ -59,12 +62,12 @@ public class ExpenseController {
   @PostMapping
   public ResponseEntity<Expense> create(
     UsernamePasswordAuthenticationToken authenticationToken,
-    @RequestBody Expense bodyExpense
-  ) {
+    @RequestBody CreateExpenseRequest createExpenseRequest
+  ) throws CategoryNotFoundException {
     return ResponseEntity.ok(
       expenseService.create(
         getUsername(authenticationToken),
-        bodyExpense
+        createExpenseRequest
       )
     );
   }
@@ -72,15 +75,15 @@ public class ExpenseController {
   @PutMapping("{id}")
   public ResponseEntity<Expense> update(
     @PathVariable UUID id,
-    @RequestBody Expense bodyExpense,
+    @RequestBody UpdateExpenseRequest updateExpenseRequest,
     UsernamePasswordAuthenticationToken authenticationToken
-  ) throws ExpenseNotFoundException {
-    bodyExpense.setId(id);
+  ) throws ExpenseNotFoundException, CategoryNotFoundException {
+    updateExpenseRequest.setId(id);
 
     return ResponseEntity.ok(
       expenseService.update(
         getUsername(authenticationToken),
-        bodyExpense
+        updateExpenseRequest
       )
     );
   }

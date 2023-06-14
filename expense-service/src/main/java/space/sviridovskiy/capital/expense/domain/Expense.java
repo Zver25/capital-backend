@@ -30,11 +30,4 @@ public class Expense {
 
   @Column(name = "date")
   private LocalDate date;
-
-  public void update(Expense expense) {
-    category = expense.getCategory();
-    amount = expense.getAmount();
-    currencyCode = expense.getCurrencyCode();
-    date = expense.getDate();
-  }
 }
