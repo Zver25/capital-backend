@@ -1,16 +1,20 @@
 package space.sviridovskiy.capital.income.service;
 
 import space.sviridovskiy.capital.income.domain.Income;
+import space.sviridovskiy.capital.income.exeption.CategoryNotFoundException;
 import space.sviridovskiy.capital.income.exeption.IncomeNotFoundException;
+import space.sviridovskiy.capital.income.payload.CreateIncomeRequest;
+import space.sviridovskiy.capital.income.payload.IncomeResponse;
+import space.sviridovskiy.capital.income.payload.UpdateIncomeRequest;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 public interface IncomeService {
-  List<Income> findByPeriod(String username, LocalDate startDate, LocalDate endDate);
-  Income findById(String username, UUID id) throws IncomeNotFoundException;
-  Income create(String username, Income expense);
-  Income update(String username, Income expense) throws IncomeNotFoundException;
+  List<IncomeResponse> findByPeriod(String username, LocalDate startDate, LocalDate endDate);
+  IncomeResponse findById(String username, UUID id) throws IncomeNotFoundException;
+  IncomeResponse create(String username, CreateIncomeRequest createIncomeRequest) throws CategoryNotFoundException;
+  IncomeResponse update(String username, UpdateIncomeRequest updateIncomeRequest) throws IncomeNotFoundException, CategoryNotFoundException;
   void delete(String username, UUID id) throws IncomeNotFoundException;
 }

@@ -1,6 +1,7 @@
 package space.sviridovskiy.capital.income.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -8,6 +9,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "categories")
 @Data
+@NoArgsConstructor
 public class Category {
   @Id
   @Column(name = "id")
@@ -18,6 +20,10 @@ public class Category {
 
   @Column(name = "name")
   private String name;
+
+  public Category(UUID id) {
+    this.id = id;
+  }
 
   public void update(Category category) {
     name = category.getName();

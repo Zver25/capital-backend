@@ -1,4 +1,4 @@
-package space.sviridovskiy.capital.expense.payload;
+package space.sviridovskiy.capital.income.payload;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-public class UpdateExpenseRequest {
+public class UpdateIncomeRequest {
   private UUID Id;
 
   @Positive(message = "CategoryId is required")

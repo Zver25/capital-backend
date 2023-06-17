@@ -7,7 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import space.sviridovskiy.capital.income.domain.Income;
+import space.sviridovskiy.capital.income.exeption.CategoryNotFoundException;
 import space.sviridovskiy.capital.income.exeption.IncomeNotFoundException;
+import space.sviridovskiy.capital.income.payload.CreateIncomeRequest;
+import space.sviridovskiy.capital.income.payload.IncomeResponse;
+import space.sviridovskiy.capital.income.payload.UpdateCategoryRequest;
+import space.sviridovskiy.capital.income.payload.UpdateIncomeRequest;
 import space.sviridovskiy.capital.income.service.IncomeService;
 
 import java.time.LocalDate;
@@ -19,69 +24,63 @@ import java.util.UUID;
 @Log4j2
 @RequestMapping("/api/incomes")
 public class IncomeController {
-  private final IncomeService expenseService;
+  private final IncomeService incomeService;
 
   private String getUsername(UsernamePasswordAuthenticationToken authenticationToken) {
     return authenticationToken.getPrincipal().toString();
   }
 
   @GetMapping("{id}")
-  public ResponseEntity<Income> getById(
+  public ResponseEntity<IncomeResponse> getById(
     @PathVariable UUID id,
     UsernamePasswordAuthenticationToken authenticationToken
   ) throws IncomeNotFoundException {
+    final String username = getUsername(authenticationToken);
+
     return ResponseEntity.ok(
-      expenseService.findById(
-        getUsername(authenticationToken),
-        id
-      )
+      incomeService.findById(username, id)
     );
   }
 
   @GetMapping("{start}/{end}")
-  public ResponseEntity<List<Income>> getByPeriod(
+  public ResponseEntity<List<IncomeResponse>> getByPeriod(
     @PathVariable String start,
     @PathVariable String end,
     UsernamePasswordAuthenticationToken authenticationToken
   ) {
-    LocalDate startDate = LocalDate.parse(start);
-    LocalDate endDate = LocalDate.parse(end);
+    final String username = getUsername(authenticationToken);
+    final LocalDate startDate = LocalDate.parse(start);
+    final LocalDate endDate = LocalDate.parse(end);
 
     return ResponseEntity.ok(
-      expenseService.findByPeriod(
-        getUsername(authenticationToken),
-        startDate,
-        endDate
-      )
+      incomeService.findByPeriod(username, startDate, endDate)
     );
   }
 
   @PostMapping
-  public ResponseEntity<Income> create(
+  public ResponseEntity<IncomeResponse> create(
     UsernamePasswordAuthenticationToken authenticationToken,
-    @RequestBody Income bodyExpense
-  ) {
+    @RequestBody CreateIncomeRequest createIncomeRequest
+  ) throws CategoryNotFoundException {
+    String username = getUsername(authenticationToken);
+
     return ResponseEntity.ok(
-      expenseService.create(
-        getUsername(authenticationToken),
-        bodyExpense
-      )
+      incomeService.create(username, createIncomeRequest)
     );
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Income> update(
+  public ResponseEntity<IncomeResponse> update(
     @PathVariable UUID id,
-    @RequestBody Income bodyExpense,
+    @RequestBody UpdateIncomeRequest updateIncomeRequest,
     UsernamePasswordAuthenticationToken authenticationToken
-  ) throws IncomeNotFoundException {
-    bodyExpense.setId(id);
+  ) throws IncomeNotFoundException, CategoryNotFoundException {
+    final String username = getUsername(authenticationToken);
+
+    updateIncomeRequest.setId(id);
 
     return ResponseEntity.ok(
-      expenseService.update(
-        getUsername(authenticationToken),
-        bodyExpense
-      )
+      incomeService.update(username, updateIncomeRequest)
     );
   }
 
@@ -90,7 +89,7 @@ public class IncomeController {
     @PathVariable UUID id,
     UsernamePasswordAuthenticationToken authenticationToken
   ) throws IncomeNotFoundException {
-    expenseService.delete(
+    incomeService.delete(
       getUsername(authenticationToken),
       id
     );

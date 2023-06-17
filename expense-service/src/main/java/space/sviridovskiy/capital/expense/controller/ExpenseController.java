@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import space.sviridovskiy.capital.expense.payload.CreateExpenseRequest;
+import space.sviridovskiy.capital.expense.payload.ExpenseResponse;
 import space.sviridovskiy.capital.expense.payload.UpdateExpenseRequest;
 import space.sviridovskiy.capital.expense.domain.Expense;
 import space.sviridovskiy.capital.expense.exeption.CategoryNotFoundException;
@@ -29,7 +30,7 @@ public class ExpenseController {
   }
 
   @GetMapping("{id}")
-  public ResponseEntity<Expense> getById(
+  public ResponseEntity<ExpenseResponse> getById(
     @PathVariable UUID id,
     UsernamePasswordAuthenticationToken authenticationToken
   ) throws ExpenseNotFoundException {
@@ -42,7 +43,7 @@ public class ExpenseController {
   }
 
   @GetMapping("{start}/{end}")
-  public ResponseEntity<List<Expense>> getByPeriod(
+  public ResponseEntity<List<ExpenseResponse>> getByPeriod(
     @PathVariable String start,
     @PathVariable String end,
     UsernamePasswordAuthenticationToken authenticationToken
@@ -60,7 +61,7 @@ public class ExpenseController {
   }
 
   @PostMapping
-  public ResponseEntity<Expense> create(
+  public ResponseEntity<ExpenseResponse> create(
     UsernamePasswordAuthenticationToken authenticationToken,
     @RequestBody CreateExpenseRequest createExpenseRequest
   ) throws CategoryNotFoundException {
@@ -73,7 +74,7 @@ public class ExpenseController {
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Expense> update(
+  public ResponseEntity<ExpenseResponse> update(
     @PathVariable UUID id,
     @RequestBody UpdateExpenseRequest updateExpenseRequest,
     UsernamePasswordAuthenticationToken authenticationToken

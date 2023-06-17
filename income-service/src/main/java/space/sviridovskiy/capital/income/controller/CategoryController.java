@@ -8,6 +8,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.*;
 import space.sviridovskiy.capital.income.domain.Category;
 import space.sviridovskiy.capital.income.exeption.CategoryNotFoundException;
+import space.sviridovskiy.capital.income.payload.CategoryResponse;
+import space.sviridovskiy.capital.income.payload.CreateCategoryRequest;
+import space.sviridovskiy.capital.income.payload.UpdateCategoryRequest;
 import space.sviridovskiy.capital.income.service.CategoryService;
 
 import java.util.List;
@@ -25,35 +28,36 @@ public class CategoryController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Category>> getAll(UsernamePasswordAuthenticationToken authenticationToken) {
+  public ResponseEntity<List<CategoryResponse>> getAll(UsernamePasswordAuthenticationToken authenticationToken) {
     return ResponseEntity.ok(
       categoryService.findByUsername(getUsername(authenticationToken))
     );
   }
 
   @PostMapping
-  public ResponseEntity<Category> create(
-    @RequestBody Category bodyCategory,
+  public ResponseEntity<CategoryResponse> create(
+    @RequestBody CreateCategoryRequest createCategoryRequest,
     UsernamePasswordAuthenticationToken authenticationToken
   ) {
     String username = getUsername(authenticationToken);
-    Category createdCategory = categoryService.create(username, bodyCategory);
 
-    return ResponseEntity.ok(createdCategory);
+    return ResponseEntity.ok(
+      categoryService.create(username, createCategoryRequest)
+    );
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Category> update(
+  public ResponseEntity<CategoryResponse> update(
     @PathVariable UUID id,
-    @RequestBody Category bodyCategory,
+    @RequestBody UpdateCategoryRequest updateCategoryRequest,
     UsernamePasswordAuthenticationToken authenticationToken
   ) throws CategoryNotFoundException {
-    bodyCategory.setId(id);
+    updateCategoryRequest.setId(id);
 
     return ResponseEntity.ok(
       categoryService.update(
         getUsername(authenticationToken),
-        bodyCategory
+        updateCategoryRequest
       )
     );
   }

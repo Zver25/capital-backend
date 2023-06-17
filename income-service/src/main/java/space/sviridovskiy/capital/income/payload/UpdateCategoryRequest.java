@@ -1,4 +1,4 @@
-package space.sviridovskiy.capital.expense.payload;
+package space.sviridovskiy.capital.income.payload;
 
 import lombok.Data;
 
