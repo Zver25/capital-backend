@@ -39,6 +39,10 @@ public class RouterConfiguration {
 				.path("/api/incomes/**")
 				.uri("lb://income-service")
 			)
+			.route(predicateSpec -> predicateSpec
+				.path("/api/report/**")
+				.uri("lb://report-service")
+			)
 			.build();
 	}
 
