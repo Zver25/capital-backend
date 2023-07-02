@@ -9,12 +9,9 @@ import javax.persistence.*;
 @Data
 public class Currency {
   @Id
-  @Column(name = "id")
-  private long id;
-
   @Column(name = "code")
   private String code;
 
-  @Column(name = "username")
-  private String username;
+  @Column(name = "name")
+  private String name;
 }

@@ -4,10 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import space.sviridovskiy.capital.currency.domain.Currency;
+import space.sviridovskiy.capital.currency.domain.UserCurrency;
 import space.sviridovskiy.capital.currency.service.CurrencyService;
 
 import java.util.List;
@@ -24,6 +23,13 @@ public class CurrencyController {
     return authenticationToken.getPrincipal().toString();
   }
 
+  @GetMapping("available")
+  public ResponseEntity<List<Currency>> getAvailable() {
+    return ResponseEntity.ok(
+      currencyService.getAvailable()
+    );
+  }
+
   @GetMapping
   public ResponseEntity<List<String>> getAll(UsernamePasswordAuthenticationToken authenticationToken) {
     return ResponseEntity.ok(
@@ -32,7 +38,20 @@ public class CurrencyController {
           getUsername(authenticationToken)
         )
         .stream()
-        .map(Currency::getCode)
+        .map(UserCurrency::getCode)
+        .collect(Collectors.toList())
+    );
+  }
+
+  @PostMapping
+  public ResponseEntity<List<String>> saveUserCurrencies(
+    UsernamePasswordAuthenticationToken authenticationToken,
+    @RequestBody List<String> request
+  ) {
+    return ResponseEntity.ok(
+      currencyService.setSelectedCurrencies(getUsername(authenticationToken), request)
+        .stream()
+        .map(UserCurrency::getCode)
         .collect(Collectors.toList())
     );
   }

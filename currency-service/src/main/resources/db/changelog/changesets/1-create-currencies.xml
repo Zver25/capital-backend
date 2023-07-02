@@ -11,11 +11,692 @@
 
     <changeSet author="AleksandrSviridovsky" id="Create currencies table">
         <createTable tableName="currencies">
-            <column name="id" type="bigint">
-                <constraints primaryKey="true"/>
+            <column name="code" type="varchar(3)">
+                <constraints primaryKey="true" primaryKeyName="PK_CURRENCIES_CODE" nullable="false"/>
             </column>
-            <column name="code" type="varchar(3)"/>
-            <column name="username" type="varchar"/>
+            <column name="name" type="varchar"/>
         </createTable>
+    </changeSet>
+    <changeSet id="Insert currencies." author="AleksandrSviridovsky">
+        <insert tableName="currencies">
+            <column name="code" value="AED"/>
+            <column name="name" value="United Arab Emirates Dirham"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="AFN"/>
+            <column name="name" value="Afghan Afghani"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="ALL"/>
+            <column name="name" value="Albanian Lek"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="AMD"/>
+            <column name="name" value="Armenian Dram"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="ANG"/>
+            <column name="name" value="Netherlands Antillean Guilder"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="AOA"/>
+            <column name="name" value="Angolan Kwanza"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="ARS"/>
+            <column name="name" value="Argentine Peso"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="AUD"/>
+            <column name="name" value="Australian Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="AWG"/>
+            <column name="name" value="Aruban Florin"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="AZN"/>
+            <column name="name" value="Azerbaijani Manat"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BAM"/>
+            <column name="name" value="Bosnia-Herzegovina Convertible Mark"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BBD"/>
+            <column name="name" value="Barbadian Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BDT"/>
+            <column name="name" value="Bangladeshi Taka"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BGN"/>
+            <column name="name" value="Bulgarian Lev"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BHD"/>
+            <column name="name" value="Bahraini Dinar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BIF"/>
+            <column name="name" value="Burundian Franc"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BMD"/>
+            <column name="name" value="Bermudan Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BND"/>
+            <column name="name" value="Brunei Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BOB"/>
+            <column name="name" value="Bolivian Boliviano"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BRL"/>
+            <column name="name" value="Brazilian Real"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BSD"/>
+            <column name="name" value="Bahamian Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BTC"/>
+            <column name="name" value="Bitcoin"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BTN"/>
+            <column name="name" value="Bhutanese Ngultrum"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BWP"/>
+            <column name="name" value="Botswanan Pula"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BYN"/>
+            <column name="name" value="Belarusian Ruble"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="BZD"/>
+            <column name="name" value="Belize Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CAD"/>
+            <column name="name" value="Canadian Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CDF"/>
+            <column name="name" value="Congolese Franc"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CHF"/>
+            <column name="name" value="Swiss Franc"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CLF"/>
+            <column name="name" value="Chilean Unit of Account (UF)"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CLP"/>
+            <column name="name" value="Chilean Peso"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CNH"/>
+            <column name="name" value="Chinese Yuan (Offshore)"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CNY"/>
+            <column name="name" value="Chinese Yuan"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="COP"/>
+            <column name="name" value="Colombian Peso"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CRC"/>
+            <column name="name" value="Costa Rican Colón"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CUC"/>
+            <column name="name" value="Cuban Convertible Peso"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CUP"/>
+            <column name="name" value="Cuban Peso"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CVE"/>
+            <column name="name" value="Cape Verdean Escudo"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="CZK"/>
+            <column name="name" value="Czech Republic Koruna"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="DJF"/>
+            <column name="name" value="Djiboutian Franc"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="DKK"/>
+            <column name="name" value="Danish Krone"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="DOP"/>
+            <column name="name" value="Dominican Peso"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="DZD"/>
+            <column name="name" value="Algerian Dinar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="EGP"/>
+            <column name="name" value="Egyptian Pound"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="ERN"/>
+            <column name="name" value="Eritrean Nakfa"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="ETB"/>
+            <column name="name" value="Ethiopian Birr"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="EUR"/>
+            <column name="name" value="Euro"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="FJD"/>
+            <column name="name" value="Fijian Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="FKP"/>
+            <column name="name" value="Falkland Islands Pound"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="GBP"/>
+            <column name="name" value="British Pound Sterling"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="GEL"/>
+            <column name="name" value="Georgian Lari"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="GGP"/>
+            <column name="name" value="Guernsey Pound"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="GHS"/>
+            <column name="name" value="Ghanaian Cedi"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="GIP"/>
+            <column name="name" value="Gibraltar Pound"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="GMD"/>
+            <column name="name" value="Gambian Dalasi"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="GNF"/>
+            <column name="name" value="Guinean Franc"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="GTQ"/>
+            <column name="name" value="Guatemalan Quetzal"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="GYD"/>
+            <column name="name" value="Guyanaese Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="HKD"/>
+            <column name="name" value="Hong Kong Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="HNL"/>
+            <column name="name" value="Honduran Lempira"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="HRK"/>
+            <column name="name" value="Croatian Kuna"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="HTG"/>
+            <column name="name" value="Haitian Gourde"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="HUF"/>
+            <column name="name" value="Hungarian Forint"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="IDR"/>
+            <column name="name" value="Indonesian Rupiah"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="ILS"/>
+            <column name="name" value="Israeli New Sheqel"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="IMP"/>
+            <column name="name" value="Manx pound"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="INR"/>
+            <column name="name" value="Indian Rupee"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="IQD"/>
+            <column name="name" value="Iraqi Dinar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="IRR"/>
+            <column name="name" value="Iranian Rial"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="ISK"/>
+            <column name="name" value="Icelandic Króna"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="JEP"/>
+            <column name="name" value="Jersey Pound"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="JMD"/>
+            <column name="name" value="Jamaican Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="JOD"/>
+            <column name="name" value="Jordanian Dinar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="JPY"/>
+            <column name="name" value="Japanese Yen"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="KES"/>
+            <column name="name" value="Kenyan Shilling"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="KGS"/>
+            <column name="name" value="Kyrgystani Som"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="KHR"/>
+            <column name="name" value="Cambodian Riel"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="KMF"/>
+            <column name="name" value="Comorian Franc"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="KPW"/>
+            <column name="name" value="North Korean Won"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="KRW"/>
+            <column name="name" value="South Korean Won"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="KWD"/>
+            <column name="name" value="Kuwaiti Dinar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="KYD"/>
+            <column name="name" value="Cayman Islands Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="KZT"/>
+            <column name="name" value="Kazakhstani Tenge"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="LAK"/>
+            <column name="name" value="Laotian Kip"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="LBP"/>
+            <column name="name" value="Lebanese Pound"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="LKR"/>
+            <column name="name" value="Sri Lankan Rupee"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="LRD"/>
+            <column name="name" value="Liberian Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="LSL"/>
+            <column name="name" value="Lesotho Loti"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="LYD"/>
+            <column name="name" value="Libyan Dinar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MAD"/>
+            <column name="name" value="Moroccan Dirham"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MDL"/>
+            <column name="name" value="Moldovan Leu"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MGA"/>
+            <column name="name" value="Malagasy Ariary"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MKD"/>
+            <column name="name" value="Macedonian Denar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MMK"/>
+            <column name="name" value="Myanma Kyat"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MNT"/>
+            <column name="name" value="Mongolian Tugrik"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MOP"/>
+            <column name="name" value="Macanese Pataca"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MRU"/>
+            <column name="name" value="Mauritanian Ouguiya"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MUR"/>
+            <column name="name" value="Mauritian Rupee"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MVR"/>
+            <column name="name" value="Maldivian Rufiyaa"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MWK"/>
+            <column name="name" value="Malawian Kwacha"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MXN"/>
+            <column name="name" value="Mexican Peso"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MYR"/>
+            <column name="name" value="Malaysian Ringgit"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="MZN"/>
+            <column name="name" value="Mozambican Metical"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="NAD"/>
+            <column name="name" value="Namibian Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="NGN"/>
+            <column name="name" value="Nigerian Naira"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="NIO"/>
+            <column name="name" value="Nicaraguan Córdoba"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="NOK"/>
+            <column name="name" value="Norwegian Krone"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="NPR"/>
+            <column name="name" value="Nepalese Rupee"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="NZD"/>
+            <column name="name" value="New Zealand Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="OMR"/>
+            <column name="name" value="Omani Rial"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="PAB"/>
+            <column name="name" value="Panamanian Balboa"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="PEN"/>
+            <column name="name" value="Peruvian Nuevo Sol"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="PGK"/>
+            <column name="name" value="Papua New Guinean Kina"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="PHP"/>
+            <column name="name" value="Philippine Peso"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="PKR"/>
+            <column name="name" value="Pakistani Rupee"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="PLN"/>
+            <column name="name" value="Polish Zloty"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="PYG"/>
+            <column name="name" value="Paraguayan Guarani"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="QAR"/>
+            <column name="name" value="Qatari Rial"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="RON"/>
+            <column name="name" value="Romanian Leu"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="RSD"/>
+            <column name="name" value="Serbian Dinar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="RUB"/>
+            <column name="name" value="Russian Ruble"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="RWF"/>
+            <column name="name" value="Rwandan Franc"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SAR"/>
+            <column name="name" value="Saudi Riyal"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SBD"/>
+            <column name="name" value="Solomon Islands Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SCR"/>
+            <column name="name" value="Seychellois Rupee"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SDG"/>
+            <column name="name" value="Sudanese Pound"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SEK"/>
+            <column name="name" value="Swedish Krona"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SGD"/>
+            <column name="name" value="Singapore Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SHP"/>
+            <column name="name" value="Saint Helena Pound"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SLL"/>
+            <column name="name" value="Sierra Leonean Leone"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SOS"/>
+            <column name="name" value="Somali Shilling"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SRD"/>
+            <column name="name" value="Surinamese Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SSP"/>
+            <column name="name" value="South Sudanese Pound"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="STD"/>
+            <column name="name" value="São Tomé and Príncipe Dobra (pre-2018)"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="STN"/>
+            <column name="name" value="São Tomé and Príncipe Dobra"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SVC"/>
+            <column name="name" value="Salvadoran Colón"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SYP"/>
+            <column name="name" value="Syrian Pound"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="SZL"/>
+            <column name="name" value="Swazi Lilangeni"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="THB"/>
+            <column name="name" value="Thai Baht"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="TJS"/>
+            <column name="name" value="Tajikistani Somoni"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="TMT"/>
+            <column name="name" value="Turkmenistani Manat"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="TND"/>
+            <column name="name" value="Tunisian Dinar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="TOP"/>
+            <column name="name" value="Tongan Pa'anga"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="TRY"/>
+            <column name="name" value="Turkish Lira"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="TTD"/>
+            <column name="name" value="Trinidad and Tobago Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="TWD"/>
+            <column name="name" value="New Taiwan Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="TZS"/>
+            <column name="name" value="Tanzanian Shilling"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="UAH"/>
+            <column name="name" value="Ukrainian Hryvnia"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="UGX"/>
+            <column name="name" value="Ugandan Shilling"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="USD"/>
+            <column name="name" value="United States Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="UYU"/>
+            <column name="name" value="Uruguayan Peso"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="UZS"/>
+            <column name="name" value="Uzbekistan Som"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="VEF"/>
+            <column name="name" value="Venezuelan Bolívar Fuerte (Old)"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="VES"/>
+            <column name="name" value="Venezuelan Bolívar Soberano"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="VND"/>
+            <column name="name" value="Vietnamese Dong"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="VUV"/>
+            <column name="name" value="Vanuatu Vatu"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="WST"/>
+            <column name="name" value="Samoan Tala"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="XAF"/>
+            <column name="name" value="CFA Franc BEAC"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="XAG"/>
+            <column name="name" value="Silver Ounce"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="XAU"/>
+            <column name="name" value="Gold Ounce"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="XCD"/>
+            <column name="name" value="East Caribbean Dollar"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="XDR"/>
+            <column name="name" value="Special Drawing Rights"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="XOF"/>
+            <column name="name" value="CFA Franc BCEAO"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="XPD"/>
+            <column name="name" value="Palladium Ounce"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="XPF"/>
+            <column name="name" value="CFP Franc"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="XPT"/>
+            <column name="name" value="Platinum Ounce"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="YER"/>
+            <column name="name" value="Yemeni Rial"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="ZAR"/>
+            <column name="name" value="South African Rand"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="ZMW"/>
+            <column name="name" value="Zambian Kwacha"/>
+        </insert>
+        <insert tableName="currencies">
+            <column name="code" value="ZWL"/>
+            <column name="name" value="Zimbabwean Dollar"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>
