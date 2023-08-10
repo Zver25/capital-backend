@@ -6,4 +6,5 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
     <include file="/db/changelog/changesets/1-create-categories.xml"/>
     <include file="/db/changelog/changesets/2-create-incomese.xml"/>
+    <include file="/db/changelog/changesets/3-categories-add-is_disabled.xml"/>
 </databaseChangeLog>

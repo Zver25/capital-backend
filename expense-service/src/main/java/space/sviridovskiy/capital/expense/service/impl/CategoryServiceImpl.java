@@ -25,6 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
     return CategoryResponse.builder()
       .id(category.getId())
       .name(category.getName())
+      .isDisabled(category.isDisabled())
       .build();
   }
 
@@ -50,6 +51,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     category.setUsername(username);
     category.setName(request.getName());
+    category.setDisabled(false);
 
     return map(categoryRepository.save(category));
   }
@@ -62,6 +64,7 @@ public class CategoryServiceImpl implements CategoryService {
       .orElseThrow(CategoryNotFoundException::new);
 
     currentCategory.setName(request.getName());
+    currentCategory.setDisabled(request.isDisabled());
 
     return map(categoryRepository.save(currentCategory));
   }

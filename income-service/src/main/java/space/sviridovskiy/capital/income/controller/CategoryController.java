@@ -61,17 +61,4 @@ public class CategoryController {
       )
     );
   }
-
-  @DeleteMapping("{id}")
-  public ResponseEntity<?> delete(
-    @PathVariable UUID id,
-    UsernamePasswordAuthenticationToken authenticationToken
-  ) throws CategoryNotFoundException {
-    categoryService.delete(
-      getUsername(authenticationToken),
-      id
-    );
-
-    return ResponseEntity.ok().build();
-  }
 }

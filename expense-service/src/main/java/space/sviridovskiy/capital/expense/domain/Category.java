@@ -21,6 +21,9 @@ public class Category {
   @Column(name = "name")
   private String name;
 
+  @Column(name = "is_disabled")
+  private boolean isDisabled;
+
   public Category(UUID id) {
     this.id = id;
   }

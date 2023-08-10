@@ -11,4 +11,6 @@ public class UpdateCategoryRequest {
 
   @Positive(message = "Name should be present")
   private String name;
+
+  private boolean isDisabled;
 }

@@ -11,4 +11,6 @@ public class CategoryResponse {
   private UUID id;
 
   private String name;
+
+  private boolean isDisabled;
 }
