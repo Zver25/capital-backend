@@ -1,6 +1,6 @@
 package space.sviridovskiy.capital.income.service;
 
-import space.sviridovskiy.capital.income.domain.Income;
+import space.sviridovskiy.capital.income.domain.Category;
 import space.sviridovskiy.capital.income.exeption.CategoryNotFoundException;
 import space.sviridovskiy.capital.income.exeption.IncomeNotFoundException;
 import space.sviridovskiy.capital.income.payload.CreateIncomeRequest;
@@ -13,6 +13,7 @@ import java.util.UUID;
 
 public interface IncomeService {
   List<IncomeResponse> findByPeriod(String username, LocalDate startDate, LocalDate endDate);
+  List<IncomeResponse> findByCategoryAndPeriod(String username, Category category, LocalDate startDate, LocalDate endDate);
   IncomeResponse findById(String username, UUID id) throws IncomeNotFoundException;
   IncomeResponse create(String username, CreateIncomeRequest createIncomeRequest) throws CategoryNotFoundException;
   IncomeResponse update(String username, UpdateIncomeRequest updateIncomeRequest) throws IncomeNotFoundException, CategoryNotFoundException;

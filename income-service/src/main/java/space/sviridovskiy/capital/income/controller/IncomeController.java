@@ -6,12 +6,11 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-import space.sviridovskiy.capital.income.domain.Income;
+import space.sviridovskiy.capital.income.domain.Category;
 import space.sviridovskiy.capital.income.exeption.CategoryNotFoundException;
 import space.sviridovskiy.capital.income.exeption.IncomeNotFoundException;
 import space.sviridovskiy.capital.income.payload.CreateIncomeRequest;
 import space.sviridovskiy.capital.income.payload.IncomeResponse;
-import space.sviridovskiy.capital.income.payload.UpdateCategoryRequest;
 import space.sviridovskiy.capital.income.payload.UpdateIncomeRequest;
 import space.sviridovskiy.capital.income.service.IncomeService;
 
@@ -54,6 +53,22 @@ public class IncomeController {
 
     return ResponseEntity.ok(
       incomeService.findByPeriod(username, startDate, endDate)
+    );
+  }
+
+  @GetMapping("{category}/{start}/{end}")
+  public ResponseEntity<List<IncomeResponse>> getByCategoryAndPeriod(
+    @PathVariable String category,
+    @PathVariable String start,
+    @PathVariable String end,
+    UsernamePasswordAuthenticationToken authenticationToken
+  ) {
+    final String username = getUsername(authenticationToken);
+    final LocalDate startDate = LocalDate.parse(start);
+    final LocalDate endDate = LocalDate.parse(end);
+
+    return ResponseEntity.ok(
+      incomeService.findByCategoryAndPeriod(username, new Category(UUID.fromString(category)), startDate, endDate)
     );
   }
 
