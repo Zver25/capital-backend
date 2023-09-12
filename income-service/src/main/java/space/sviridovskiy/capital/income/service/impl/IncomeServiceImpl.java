@@ -42,6 +42,13 @@ public class IncomeServiceImpl implements IncomeService {
       .collect(Collectors.toList());
   }
 
+  public List<IncomeResponse> findByCategoryAndPeriod(String username, Category category, LocalDate startDate, LocalDate endDate) {
+    return incomeRepository.findByUsernameAndCategoryAndDateBetween(username, category, startDate, endDate)
+      .stream()
+      .map(this::map)
+      .collect(Collectors.toList());
+  }
+
   @Override
   public IncomeResponse findById(String username, UUID id) throws IncomeNotFoundException {
     return incomeRepository

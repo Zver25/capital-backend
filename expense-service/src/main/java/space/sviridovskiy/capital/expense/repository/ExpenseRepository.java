@@ -1,6 +1,7 @@
 package space.sviridovskiy.capital.expense.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import space.sviridovskiy.capital.expense.domain.Category;
 import space.sviridovskiy.capital.expense.domain.Expense;
 
 import java.time.LocalDate;
@@ -9,4 +10,5 @@ import java.util.UUID;
 
 public interface ExpenseRepository extends JpaRepository<Expense, UUID> {
   List<Expense> findByUsernameAndDateBetween(String username, LocalDate startDate, LocalDate endDate);
+  List<Expense> findByUsernameAndCategoryAndDateBetween(String username, Category category, LocalDate startDate, LocalDate endDate);
 }

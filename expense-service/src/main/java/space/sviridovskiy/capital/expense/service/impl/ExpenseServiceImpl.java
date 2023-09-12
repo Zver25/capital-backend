@@ -46,6 +46,14 @@ public class ExpenseServiceImpl implements ExpenseService {
   }
 
   @Override
+  public List<ExpenseResponse> findByCategoryAndPeriod(String username, Category category, LocalDate startDate, LocalDate endDate) {
+    return expenseRepository.findByUsernameAndCategoryAndDateBetween(username, category, startDate, endDate)
+      .stream()
+      .map(this::map)
+      .collect(Collectors.toList());
+  }
+
+  @Override
   public ExpenseResponse findById(String username, UUID id) throws ExpenseNotFoundException {
     return expenseRepository
       .findById(id)

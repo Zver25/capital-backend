@@ -6,10 +6,10 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
+import space.sviridovskiy.capital.expense.domain.Category;
 import space.sviridovskiy.capital.expense.payload.CreateExpenseRequest;
 import space.sviridovskiy.capital.expense.payload.ExpenseResponse;
 import space.sviridovskiy.capital.expense.payload.UpdateExpenseRequest;
-import space.sviridovskiy.capital.expense.domain.Expense;
 import space.sviridovskiy.capital.expense.exeption.CategoryNotFoundException;
 import space.sviridovskiy.capital.expense.exeption.ExpenseNotFoundException;
 import space.sviridovskiy.capital.expense.service.ExpenseService;
@@ -60,6 +60,25 @@ public class ExpenseController {
     );
   }
 
+  @GetMapping("{category}/{start}/{end}")
+  public ResponseEntity<List<ExpenseResponse>> getByCategoryAndPeriod(
+    @PathVariable String category,
+    @PathVariable String start,
+    @PathVariable String end,
+    UsernamePasswordAuthenticationToken authenticationToken
+  ) {
+    LocalDate startDate = LocalDate.parse(start);
+    LocalDate endDate = LocalDate.parse(end);
+
+    return ResponseEntity.ok(
+      expenseService.findByCategoryAndPeriod(
+        getUsername(authenticationToken),
+        new Category(UUID.fromString(category)),
+        startDate,
+        endDate
+      )
+    );
+  }
   @PostMapping
   public ResponseEntity<ExpenseResponse> create(
     UsernamePasswordAuthenticationToken authenticationToken,
