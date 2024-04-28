@@ -1,17 +1,12 @@
 package space.sviridovskiy.capital.currency.controller;
 
-
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import space.sviridovskiy.capital.currency.domain.Rate;
 import space.sviridovskiy.capital.currency.service.RateService;
 
-import javax.ws.rs.QueryParam;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,8 +21,8 @@ public class RateController {
   public ResponseEntity<List<Rate>> getRateForPeriod(
     @PathVariable String sourceCode,
     @PathVariable String targetCode,
-    @QueryParam("startDate")String startDateParam,
-    @QueryParam("endDate")String endDateParam
+    @RequestParam("startDate")String startDateParam,
+    @RequestParam("endDate")String endDateParam
   ) {
     LocalDate startDate = LocalDate.parse(startDateParam);
     LocalDate endDate = LocalDate.parse(endDateParam);
