@@ -2,7 +2,7 @@ FROM gradle:7.6.4-jdk11 as builder
 
 WORKDIR /app
 COPY . .
-RUN gradle gateway:bootJar
+RUN gradle --no-daemon gateway:bootJar
 
 FROM adoptopenjdk/openjdk11:x86_64-alpine-jre-11.0.19_7
 WORKDIR /app
