@@ -9,6 +9,7 @@ import lombok.Data;
 @Builder
 public class AuthenticationResponse {
 	private String username;
+	private String fullname;
 	private String accessToken;
 	private String refreshToken;
 }

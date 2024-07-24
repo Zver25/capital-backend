@@ -31,13 +31,28 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public void changePassword(User user, String newPassword) {
+		user.setPassword(encodePassword(newPassword));
+
+		userRepository.save(user);
+	}
+
+	@Override
+	public void changeFullname(String username, String fullname) {
+		final User user = findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+		user.setFullname(fullname);
+
+		userRepository.save(user);
+	}
+
+	@Override
 	public Optional<User> findByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
 
 	@Override
 	public Optional<User> findByUsernameAndPassword(String username, String password) {
-		Optional<User> optionalUser = findByUsername(username);
+		final Optional<User> optionalUser = findByUsername(username);
 
 		return optionalUser.filter(user -> passwordEncoder.matches(password, user.getPassword()));
 	}
