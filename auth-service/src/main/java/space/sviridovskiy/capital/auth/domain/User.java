@@ -21,6 +21,9 @@ public class User implements UserDetails {
 	private String username;
 
 	@Column
+	private String fullname;
+
+	@Column
 	private String password;
 
 	@Override
