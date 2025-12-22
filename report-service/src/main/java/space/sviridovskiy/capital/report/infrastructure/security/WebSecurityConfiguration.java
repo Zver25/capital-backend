@@ -1,4 +1,4 @@
-package space.sviridovskiy.capital.report.config;
+package space.sviridovskiy.capital.report.infrastructure.security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;

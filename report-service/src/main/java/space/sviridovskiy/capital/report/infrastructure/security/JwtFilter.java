@@ -1,4 +1,4 @@
-package space.sviridovskiy.capital.report.config;
+package space.sviridovskiy.capital.report.infrastructure.security;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,9 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
-import space.sviridovskiy.capital.report.domain.CustomGrantedAuthority;
-import space.sviridovskiy.capital.report.domain.User;
-import space.sviridovskiy.capital.report.service.JwtCheckService;
+import space.sviridovskiy.capital.report.infrastructure.external.JwtCheckService;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

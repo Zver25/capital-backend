@@ -1,4 +1,4 @@
-package space.sviridovskiy.capital.report.domain;
+package space.sviridovskiy.capital.report.infrastructure.security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,7 +9,7 @@ public class CustomGrantedAuthority implements GrantedAuthority {
 
   @Override
   public String getAuthority() {
-    return null;
+    return authority;
   }
 
   @Override
