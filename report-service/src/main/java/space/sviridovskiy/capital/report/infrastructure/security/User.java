@@ -1,4 +1,4 @@
-package space.sviridovskiy.capital.report.domain;
+package space.sviridovskiy.capital.report.infrastructure.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
